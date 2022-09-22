@@ -1,2 +1,2 @@
 # Library
-CP algorithms that i like
+CP algorithms that i'm learning
