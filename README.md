@@ -2,7 +2,7 @@
 CP algorithms that i'm learning
 
 ### Data Structures
-- [Disjoint Set Union](https://www.google.com/)
+- [Disjoint Set Union]()
 - [Segtree]()
 - [Fenwick Tree]()
 
