@@ -3,7 +3,7 @@ CP algorithms that i'm learning
 
 ### Data Structures
 - [Disjoint Set Union](https://github.com/pagodepaiva/Library/blob/main/Codes/DSU.cpp)
-- [Segtree]()
+- [Segment tree]()
 - [Fenwick Tree]()
 
 ### Dynamic Programming
