@@ -11,6 +11,8 @@ CP algorithms that i'm learning
 - [LIS]()
 - [Bitmask](https://github.com/pagodepaiva/Library/blob/main/Codes/DP/bitmask.cpp)
 - [Range]()
+- [Convex Hull Trick Optimization]()
+- [Divide and Conquer Optimization]()
 
 ### Graphs
 - [DFS]()
@@ -22,3 +24,8 @@ CP algorithms that i'm learning
 ### Trees
 - [Euler Tour]()
 - [LCA](https://github.com/pagodepaiva/Library/blob/main/Codes/Trees/LCA.cpp)
+
+### Geometry
+- [Basics]()
+- [Sweep Line]()
+- [Convex Hull]()
