@@ -2,7 +2,7 @@
 CP algorithms that i'm learning
 
 ### Data Structures
-- [Disjoint Set Union](https://github.com/pagodepaiva/Library/blob/main/Codes/DSU.cpp)
+- [Disjoint Set Union](https://github.com/pagodepaiva/Library/blob/main/Codes/Data%20Structures/DSU.cpp)
 - [Segment tree]()
 - [Fenwick Tree]()
 
@@ -21,4 +21,4 @@ CP algorithms that i'm learning
 
 ### Trees
 - [Euler Tour]()
-- [LCA]()
+- [LCA](https://github.com/pagodepaiva/Library/blob/main/Codes/Trees/LCA.cpp)
