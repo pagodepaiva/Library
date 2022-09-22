@@ -9,7 +9,7 @@ CP algorithms that i'm learning
 ### Dynamic Programming
 - [Knapsack]()
 - [LIS]()
-- [Bitmask]()
+- [Bitmask](https://github.com/pagodepaiva/Library/blob/main/Codes/DP/bitmask.cpp)
 - [Range]()
 
 ### Graphs
