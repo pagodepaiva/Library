@@ -5,6 +5,7 @@ CP algorithms that i'm learning
 - [Disjoint Set Union](https://github.com/pagodepaiva/Library/blob/main/Codes/Data%20Structures/DSU.cpp)
 - [Segment tree]()
 - [Fenwick Tree]()
+- [Mo Algorithm](https://github.com/pagodepaiva/Library/blob/main/Codes/Data%20Structures/Mo.cpp)
 
 ### Dynamic Programming
 - [Knapsack]()
