@@ -1,5 +1,4 @@
 # Library
-CP algorithms that i'm learning
 
 ### Data Structures
 - [Disjoint Set Union](https://github.com/pagodepaiva/Library/blob/main/Codes/Data%20Structures/DSU.cpp)
@@ -21,6 +20,7 @@ CP algorithms that i'm learning
 - [Topological Sort]()
 - [Dijkstra]()
 - [Kruskal]()
+- [Kosaraju](https://github.com/pagodepaiva/Library/blob/main/Codes/Graphs/kosaraju.cpp)
 
 ### Trees
 - [Euler Tour]()
