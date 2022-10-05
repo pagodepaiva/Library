@@ -3,6 +3,7 @@
 ### Data Structures
 - [Disjoint Set Union](https://github.com/pagodepaiva/Library/blob/main/Codes/Data%20Structures/DSU.cpp)
 - [Segment tree]()
+- [Lazy Propagation](https://github.com/pagodepaiva/Library/blob/main/Codes/Data%20Structures/lazy.cpp)
 - [Fenwick Tree]()
 - [Mo Algorithm](https://github.com/pagodepaiva/Library/blob/main/Codes/Data%20Structures/Mo.cpp)
 
