@@ -20,3 +20,11 @@ string sum(string a, string b){
     reverse(res.begin(), res.end());
     return res;
 }
+
+string mul(string a, int b){
+    string res = a;
+    while(--b){
+        res = sum(res, a);
+    }
+    return res;
+}
