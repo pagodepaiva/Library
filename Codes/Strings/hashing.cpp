@@ -13,7 +13,7 @@ struct Hashing{
     }
     const int p = 419;
     const int q = 233;
-    const int m = 726781379;
+    const int m = 36893401;
     int potp[tam_hash], potq[tam_hash];
     int invp[tam_hash], invq[tam_hash];
     array <int, 2> prefhash[tam_hash];
