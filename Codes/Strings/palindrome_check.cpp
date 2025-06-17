@@ -50,7 +50,7 @@ struct Substring_hash{
         return res;
     }
 };
-
+ 
 struct Merge_hash{
     Substring_hash h1, h2;
     pair <int, int> compute_hash(string &s){
@@ -62,7 +62,7 @@ struct Merge_hash{
         return {h1.substring_hash(i, j), h2.substring_hash(i, j)};
     }
 };
-
+ 
 struct Palindrome_check{
     Merge_hash h, inv_h;
     int n;
@@ -75,8 +75,11 @@ struct Palindrome_check{
         return;        
     }
     bool is_palindrome(int i, int j){
-        if(h.substring_hash(i, j) == inv_h.substring_hash(n-1-j, n-1-i))
+        if(i < 0 or j >= n or i > j)
+            return false;
+        if(h.substring_hash(i, j) == inv_h.substring_hash(n-1-j, n-1-i)){
             return true;
+        }
         return false;
     }
 } h;
