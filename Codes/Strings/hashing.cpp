@@ -1,5 +1,16 @@
-const int tam_hash = 1e6+10;
-struct Hashing{
+struct Substring_hash{
+    /*
+    Detalhes:
+    - Escolha o primo que for usar. Deixei uma lista de 10 primos por padrao
+    - Alem de retornar o hash de uma string, esse struct retorna a substring_hash de uma string.
+    - O struct espera que so usamos letras minusculas
+    - O struct espera que as perguntas de substring sejam 0 indexadas
+    */
+    vector <int> primos = {467, 733, 907, 937, 383, 607, 457, 107, 353, 577};
+    const long long m = 36893401;
+    long long pot[tam_hash], inv_pot[tam_hash];
+    long long pref[tam_hash];
+    long long p;
     long long binpow(long long a, long long b, long long m) {
         a %= m;
         long long res = 1;
@@ -11,53 +22,43 @@ struct Hashing{
         }
         return res;
     }
-    const int p = 419;
-    const int q = 233;
-    const int m = 36893401;
-    int potp[tam_hash], potq[tam_hash];
-    int invp[tam_hash], invq[tam_hash];
-    array <int, 2> prefhash[tam_hash];
-    Hashing(){
-        potp[0] = potq[0] = 1;
-        invp[1] = binpow(p, m-2, m);
-        invq[1] = binpow(q, m-2, m);
-        invp[0] = invq[0] = 1;
+    void build(int c){
+        p = primos[c];
+        pot[0] = 1;
+        inv_pot[1] = binpow(p, m-2, m);
+        inv_pot[0] = 1;
         for(int i = 1;i < tam_hash;i++){
-            potp[i] = potp[i-1]*p;
-            potp[i] %= m;
-            potq[i] = potq[i-1]*q;
-            potq[i] %= m;
-            if(i == 1) continue;
-            invp[i] = invp[i-1]*invp[1];
-            invp[i] %= m;
-            invq[i] = invq[i-1]*invq[1];
-            invq[i] %= m;
+            pot[i] = (pot[i-1]*p) % m;
+            if(i == 1)
+                continue;
+            inv_pot[i] = (inv_pot[i-1]*inv_pot[1]) % m;
         }
     }
-    array <int, 2> compute_hash(string s){
-        prefhash[0] = {0, 0};
+    long long compute_hash(string &s){
+        pref[0] = 0;
         for(int i = 0;i < s.size();i++){
-            prefhash[i+1][0] = prefhash[i][0] + potp[i]*(s[i]-'a'+1);
-            prefhash[i+1][0] %= m;
-            prefhash[i+1][1] = prefhash[i][1] + potq[i]*(s[i]-'a'+1);
-            prefhash[i+1][1] %= m;
+            pref[i+1] = (pref[i] + pot[i]*(((long long) s[i] - 'a' + 1))) % m;
         }
-        return prefhash[s.size()];
+        return pref[s.size()];
     }
-    array <int, 2> substring_hash(int i, int j){
+    long long substring_hash(int i, int j){
         i++;
         j++;
-        array <int, 2> res = {prefhash[j][0]-prefhash[i-1][0], prefhash[j][1]-prefhash[i-1][1]};
-        res[0] %= m;
-        res[0] += m;
-        res[0] %= m;
-        res[1] %= m;
-        res[1] += m;
-        res[1] %= m;
-        res[0] *= invp[i-1];
-        res[0] %= m;
-        res[1] *= invq[i-1];
-        res[1] %= m;
+        long long res = ((pref[j] - pref[i-1]) % m + m)%m;
+        res *= inv_pot[i-1];
+        res %= m;
         return res;
     }
 };
+
+struct Merge_hash{
+    Substring_hash h1, h2;
+    pair <int, int> compute_hash(string &s){
+        h1.build(0);
+        h2.build(1);
+        return {h1.compute_hash(s), h2.compute_hash(s)};
+    }
+    pair <int, int> substring_hash(int i, int j){
+        return {h1.substring_hash(i, j), h2.substring_hash(i, j)};
+    }
+} hs, ht;
