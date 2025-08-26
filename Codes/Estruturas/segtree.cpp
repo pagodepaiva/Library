@@ -20,7 +20,7 @@ struct Segtree{
             return;
         }
         int mid = (l+r)/2;
-        if(l <= pos and pos <= mid) update(2*node, l, mid, pos, val);
+        if(pos <= mid) update(2*node, l, mid, pos, val);
         else update(2*node+1, mid+1, r, pos, val);
         tree[node] = join(tree[2*node], tree[2*node+1]);
         return;
