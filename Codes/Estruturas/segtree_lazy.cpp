@@ -59,6 +59,6 @@ struct Segtree{
         if(l <= tl and tr <= r)
             return tree[node];
         int mid = (tl+tr)/2;
-        return join(query(2*node, l, r, tl, mid), query(2*node, l, r, mid+1, tr));
+        return join(query(2*node, l, r, tl, mid), query(2*node+1, l, r, mid+1, tr));
     }
 } seg;
