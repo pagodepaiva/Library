@@ -1,69 +1,64 @@
-//
-const int N = ;
-//
-
 struct Segtree{
-    int tree[4*N], lazy[4*N];
- 
+    int tree[4*N], lazyadd[4*N], lazyset[4*N];
     int join(int a, int b){
         return a+b;
     }
- 
     void unlazy(int node, int l, int r){
-        tree[node] += lazy[node]*(r-l+1);
-        if(l < r){
-            lazy[2*node] += lazy[node];
-            lazy[2*node+1] += lazy[node];
+        if(lazyset[node] != 0){
+            tree[node] = (r-l+1)*lazyset[node];
+            if(l != r){
+                lazyadd[2*node] = lazyadd[2*node+1] = 0;
+                lazyset[2*node] = lazyset[2*node+1] = lazyset[node];
+            }
+            lazyset[node] = 0;
         }
- 
-        lazy[node] = 0;
-    }
- 
-    int build(int node, int l, int r){
-        if(l == r){
-            tree[node] = 0;
-            lazy[node] = 0;
-            return 0;
+        if(lazyadd[node] != 0){
+            tree[node] += (r-l+1)*lazyadd[node];
+            if(l != r){
+                lazyadd[2*node] += lazyadd[node];
+                lazyadd[2*node+1] += lazyadd[node];
+            }
+            lazyadd[node] = 0;
         }
- 
-        int mid = (l+r)/2;
- 
-        build(2*node, l, mid);
-        build(2*node+1, mid+1, r);
- 
-        tree[node] = 0;
-        lazy[node] = 0;
-        return 0;
     }
- 
-    void update(int node, int l, int r, int val, int tl, int tr){
+    void updateset(int node, int l, int r, int tl, int tr, int val){
         unlazy(node, tl, tr);
-        if(l > tr or r < tl) return;
+        if(l > tr or tl > r)
+            return;
         if(l <= tl and tr <= r){
-            lazy[node] += val;
+            lazyset[node] = val;
+            lazyadd[node] = 0;
             unlazy(node, tl, tr);
-
-          return;
+            return;
         }
- 
         int mid = (tl+tr)/2;
-        update(2*node, l, r, val, tl, mid);
-        update(2*node+1, l, r, val, mid+1, tr);
+        updateset(2*node, l, r, tl, mid, val);
+        updateset(2*node+1, l, r, mid+1, tr, val);
         tree[node] = join(tree[2*node], tree[2*node+1]);
- 
         return;
     }
- 
-    int query(int node, int l, int r, int tl, int tr){
-        if(l > tr or r < tl) return 0;
-        if(l <= tl and tr <= r){
-            unlazy(node, tl, tr);
-            return tree[node];
-        }
- 
+    void updateadd(int node, int l, int r, int tl, int tr, int val){
         unlazy(node, tl, tr);
- 
+        if(l > tr or tl > r)
+            return;
+        if(l <= tl and tr <= r){
+            lazyadd[node] += val;
+            unlazy(node, tl, tr);
+            return;
+        }
         int mid = (tl+tr)/2;
-        return join(query(2*node, l, r, tl, mid), query(2*node+1, l, r, mid+1, tr));
+        updateadd(2*node, l, r, tl, mid, val);
+        updateadd(2*node+1, l, r, mid+1, tr, val);
+        tree[node] = join(tree[2*node], tree[2*node+1]);
+        return;
+    }
+    int query(int node, int l, int r, int tl, int tr){
+        unlazy(node, tl, tr);
+        if(l > tr or tl > r)
+            return 0;
+        if(l <= tl and tr <= r)
+            return tree[node];
+        int mid = (tl+tr)/2;
+        return join(query(2*node, l, r, tl, mid), query(2*node, l, r, mid+1, tr));
     }
 } seg;
